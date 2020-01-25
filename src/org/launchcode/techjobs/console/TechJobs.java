@@ -62,7 +62,10 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
+
+
+//                    System.out.println("Search all fields not yet implemented.");
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -128,7 +131,7 @@ public class TechJobs {
         //TODO: if no results found, print message
         //if there is no entry into someJobs hashmap, print error message
         if (someJobs.size() == 0){
-            System.out.println("No results found");
+            System.out.println("No results found.");
         }
     }
 }
