@@ -8,10 +8,7 @@ import org.w3c.dom.ls.LSOutput;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -45,6 +42,8 @@ public class JobData {
             }
         }
 
+        Collections.sort(values);
+
         return values;
     }
 
@@ -53,7 +52,9 @@ public class JobData {
         // load data, if not already loaded
         loadData();
 
-        return allJobs;
+        ArrayList<HashMap<String, String>> newJobs = (ArrayList<HashMap<String, String>>)allJobs.clone();
+
+        return newJobs;
     }
 
     /**
@@ -95,7 +96,9 @@ public class JobData {
 
         //for each job in the ArrayList of all jobs,
         for (HashMap<String, String> job : allJobs){
+            //for each category in the job
             for(Map.Entry<String, String> item: job.entrySet()){
+                //if category contains the search term disregarding case & inclusively
                 if(item.getValue().toLowerCase().contains(searchTerm.toLowerCase())){
                     if (!jobs.contains(job)){
                         jobs.add(job);
